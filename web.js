@@ -1,5 +1,5 @@
-var express = require('express');
-var pg = require('pg');
+var express = require('express'),
+	pg = require('pg');
 
 //pg.connect(process.env.DATABASE_URL, function(err, client) {
   //var query = client.query('SELECT * FROM your_table');
@@ -10,9 +10,9 @@ var pg = require('pg');
 //});
 
 var app = express.createServer(express.logger());
-/*11*/
+
 app.get('/', function(request, response) {
-  response.send('Hello World! '+process.env.DATABASE_URL);
+  response.send('Hello World! ');
 });
 
 var port = process.env.PORT || 5000;
