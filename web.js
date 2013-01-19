@@ -12,10 +12,11 @@ var express = require('express'),
 var app = express.createServer(express.logger());
 
 app.get('/', function(request, response) {
-  response.send('Hello World! ');
+  response.send(process.env.DATABASE_URL +"   ");
 });
 
 var port = process.env.PORT || 5000;
 app.listen(port, function() {
+  console.log(process.env.DATABASE_URL);
   console.log("Listening on " + port);
 });
