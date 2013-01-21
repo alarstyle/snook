@@ -1,6 +1,6 @@
 var express = require('express'),
 	pg = require('pg'),
-    imageMagick = require('gm').subClass({ imageMagick: true });
+    imageMagick = require('gm');//.subClass({ imageMagick: true });
 
 var dbUrl = process.env.DATABASE_URL || "postgres://postgres:password@localhost/postgres";
 
