@@ -230,7 +230,7 @@ function loadFiles(callback) {
         .then('app/controllers/static.js')
         .into(app);
     console.log('----------------------------');
-    console.log(ddd);
+    console.log(app.app);
     console.log('----------------------------');
     callback(null);
 }
