@@ -229,6 +229,8 @@ function loadFiles(callback) {
         .into(ddd);
     console.log('----------------------------');
     console.log(ddd);
+    console.log(ddd.controllers);
+    console.log(ddd.controllers['']);
     console.log('----------------------------');
     //callback(null);
 }
