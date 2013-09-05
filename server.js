@@ -302,6 +302,7 @@ function configureApp(callback) {
  * Handle routes
  */
 function bindPathsToControllers(callback) {
+    console.log("aaaaaa!!!!!!!!!!!!!!");
     var allowedVerbs = ['get', 'post', 'all'];
     var temp,controller,method;
 
