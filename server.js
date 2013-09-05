@@ -223,13 +223,11 @@ function matchDbWithModels(callback) {
  * Loading routes and controllers
  */
 function loadFiles(callback) {
-    var ddd = {};
     load('app/routes.js')
-        .then('app/controllers/')
-        .into(ddd);
-    console.log('----------------------------');
-    console.log(ddd);
-    console.log('----------------------------');
+        .then('app/controllers/login.js')
+        .then('app/controllers/picasa.js')
+        .then('app/controllers/static.js')
+        .into(app);
     callback(null);
 }
 
@@ -368,7 +366,7 @@ async.series([
     //matchDbWithModels,
     loadFiles,
     configureApp,
-    //bindPathsToControllers,
+    bindPathsToControllers,
     createServer
 ]);
 
