@@ -1,0 +1,16 @@
+<% extend 'default.html' %>
+
+<div>
+    <%- @baseUrl %><br>
+    Author: <%- @author.name %><br>
+    Album title: <%- @album.title %><br>
+    <ul>
+        <% for image in @images : %>
+        <li>
+            <%- image.filename %><br>
+            <img src="<%- image.thumb %>" alt=""/><br>
+            <img src="<%- image.url %>" alt=""/><br>
+        </li>
+        <% end %>
+    </ul>
+</div>

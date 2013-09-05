@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="description" content="">
+<link href="/favicon.ico" rel="shortcut icon" type="image/x-icon">
+<title></title>
+<link href="/css/main.css" rel="stylesheet" type="text/css" />
+<link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<script src="/js/css_browser_selector.js" type="text/javascript"></script>
+<script src="/js/jquery.js" type="text/javascript"></script>
+<script src="/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="/js/snook.js" type="text/javascript"></script>
+<script src="/js/snook.picasa.js" type="text/javascript"></script>
+<script src="/js/scripts.js" type="text/javascript"></script>
+</head>
+
+<body>
+
+<div class="wrapper">
+
+    <% content %>
+
+	<div class="header">
+    	header
+    </div><!--header-->
+
+    <div class="main clearfix">
+
+    	<div class="content content">
+        	{{>content}}
+        </div><!--content-->
+
+        <div class="leftsidebar">
+            LEFTSIDEBAR
+        </div><!--leftsidebar-->
+
+        <div class="rightsidebar">
+            RIGHTSIDEBAR
+        </div><!--rightsidebar-->
+
+    </div><!--main-->
+
+    <div class="footer">
+    	FOOTER
+    </div><!--footer-->
+
+</div>
+
+</body>
+</html>

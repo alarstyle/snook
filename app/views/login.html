@@ -1,0 +1,12 @@
+<% extend 'default.html' %>
+
+<div>
+    <form method="post">
+        <fieldset>
+            <legend>Login</legend>
+            <input type="text" name="username" placeholder="<%- @__ 'registration_email' %>"><br>
+            <input type="password" name="password" placeholder="<%- @__ 'registration_password' %>"><br>
+            <button type="submit" class="btn"><%- @__ 'registration_submit' %></button>
+        </fieldset>
+    </form>
+</div>
