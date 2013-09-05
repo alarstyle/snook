@@ -223,11 +223,15 @@ function matchDbWithModels(callback) {
  * Loading routes and controllers
  */
 function loadFiles(callback) {
+    var ddd = {};
     load('app/routes.js')
         .then('app/controllers/login.js')
         .then('app/controllers/picasa.js')
         .then('app/controllers/static.js')
-        .into(app);
+        .into(ddd);
+    console.log('----------------------------');
+    console.log(ddd);
+    console.log('----------------------------');
     callback(null);
 }
 
