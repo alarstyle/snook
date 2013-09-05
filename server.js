@@ -230,7 +230,7 @@ function loadFiles(callback) {
     console.log('----------------------------');
     console.log(ddd);
     console.log('----------------------------');
-    callback(null);
+    //callback(null);
 }
 
 /**
