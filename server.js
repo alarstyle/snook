@@ -368,7 +368,7 @@ async.series([
     //matchDbWithModels,
     loadFiles,
     configureApp,
-    bindPathsToControllers,
+    //bindPathsToControllers,
     createServer
 ]);
 
