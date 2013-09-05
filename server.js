@@ -228,7 +228,7 @@ function loadFiles(callback) {
         .then('app/controllers/login.js')
         .then('app/controllers/picasa.js')
         .then('app/controllers/static.js')
-        .into(ddd);
+        .into(app);
     console.log('----------------------------');
     console.log(ddd);
     console.log('----------------------------');
