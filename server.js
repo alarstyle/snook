@@ -226,6 +226,9 @@ function loadFiles(callback) {
     load('app/routes.js')
         .then('app/controllers/')
         .into(app);
+    console.log('----------------------------');
+    console.log(app.controllers);
+    console.log('----------------------------');
     callback(null);
 }
 
@@ -302,7 +305,6 @@ function configureApp(callback) {
  * Handle routes
  */
 function bindPathsToControllers(callback) {
-    console.log("aaaaaa!!!!!!!!!!!!!!");
     var allowedVerbs = ['get', 'post', 'all'];
     var temp,controller,method;
 
