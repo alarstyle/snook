@@ -28,7 +28,7 @@ Desktop.ini
 
 #############
 
-node_modules
+## node_modules
 tmp
 .idea
 >>>>>>> init
