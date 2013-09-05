@@ -229,6 +229,10 @@ function loadFiles(callback) {
         .then('app/controllers/picasa.js')
         .then('app/controllers/static.js')
         .into(app);
+    if (app.app) {
+        if (app.app.routes) app.routes = app.app.routes;
+        if (app.app.controllers) app.controllers = app.app.controllers;
+    }
     console.log('----------------------------');
     console.log(app.app);
     console.log('----------------------------');
@@ -311,7 +315,7 @@ function bindPathsToControllers(callback) {
     var allowedVerbs = ['get', 'post', 'all'];
     var temp,controller,method;
 
-    _.map(app.app.routes, function(route, path) {
+    _.map(app.routes, function(route, path) {
         _.map(route, function(funcs, verb) {
             if (!_.contains(allowedVerbs, verb)) {
                 return;
