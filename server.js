@@ -13,7 +13,6 @@ var express = require('express'),
     http = require('http'),
     ectRenderer = require('ect')({ watch: appConfig.watchTemplates, root: __dirname + '/app/views'}),
     i18n = require("i18n"),
-    authentication = require('./lib/authentication')(app);
     load = require('express-load'),
     //viewMiddleware =  require('./lib/middlewareView'),
     _ = require('underscore'),
@@ -223,7 +222,6 @@ function matchDbWithModels(callback) {
 function loadFiles(callback) {
     var ddd = {};
     load('app/routes.js')
-        .then('app/controllers/login.js')
         .then('app/controllers/picasa.js')
         .then('app/controllers/static.js')
         .into(app);
