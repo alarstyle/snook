@@ -13,9 +13,6 @@
     "underscore": "1.5.1",
     "config": "0.4.27",
     "i18n": "0.4.1",
-    "passport": "0.1.17",
-    "passport-local": "0.1.6",
-    "passport-google-oauth": "0.1.5",
     "request": "~2.27.0",
     "async": "~0.2.9",
     "log4js": "~0.6.8"

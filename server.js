@@ -11,10 +11,8 @@ var express = require('express'),
     https = require('https'),
     appConfig = require('config').app,
     http = require('http'),
-    LocalStrategy = require('passport-local').Strategy,
     ectRenderer = require('ect')({ watch: appConfig.watchTemplates, root: __dirname + '/app/views'}),
     i18n = require("i18n"),
-    passport = require('passport'),
     authentication = require('./lib/authentication')(app);
     load = require('express-load'),
     //viewMiddleware =  require('./lib/middlewareView'),
@@ -229,13 +227,11 @@ function loadFiles(callback) {
         .then('app/controllers/picasa.js')
         .then('app/controllers/static.js')
         .into(app);
+    // FIX: loading differs from platform
     if (app.app) {
         if (app.app.routes) app.routes = app.app.routes;
         if (app.app.controllers) app.controllers = app.app.controllers;
     }
-    console.log('----------------------------');
-    console.log(app.app);
-    console.log('----------------------------');
     callback(null);
 }
 
@@ -252,9 +248,6 @@ function configureApp(callback) {
     //app.use(viewMiddleware());                // my middleware
     app.use(express.cookieParser());            // parses the Cookie header field and populates req.cookies
     app.use(express.bodyParser());              // supporting JSON, urlencoded, and multipart requests
-    app.use(express.session({ secret: 'keyboard cat' }));
-    app.use(passport.initialize());
-    app.use(passport.session());
     app.use(i18n.init);                         // init i18n module
     app.use(function (req, res, next) {         // register helper as a locals function
         res.locals.__ = function(arguments) {
