@@ -1,16 +1,25 @@
 <% extend 'default.html' %>
 
-<div>
-    <%- @baseUrl %><br>
-    Author: <%- @author.name %><br>
-    Albums:
-    <ul>
-        <% for album in @albums : %>
-        <li>
-            Title: <%- album.title %><br>
-            imagesNum: <%- album.imagesNum %><br>
-            <img src="<%- album.thumb %>" alt=""/><br>
-        </li>
-        <% end %>
-    </ul>
+<div class="user-top">
+    <div class="user-name">
+        <h1><%- @author.name %></h1>
+    </div>
 </div>
+
+<div class="albums clearfix">
+
+    <% for album in @albums : %>
+    <div class="item">
+        <a href="#">
+            <div class="item-img">
+                <b class="b2"></b><b class="b1"></b><img src="<%- album.thumb %>" alt="<%- album.title %>"/>
+            </div>
+            <div class="item-title">
+                <h2><%- album.title %></h2>
+            </div>
+        </a>
+    </div>
+    <% end %>
+
+</div>
+&nbsp
