@@ -3,7 +3,7 @@ module.exports = {
   '/about': {all: 'static.about'},
   '/login': {get: 'login.get', post: 'login.post'},
   '/picasa': {all: 'picasa.index'},
-  '/picasa/:user': {all: 'picasa.user'},
-  '/picasa/:user/:album': {all: 'picasa.album'},
-  '/picasa/:user/:album/*': {all: 'picasa.album'}
+  '/picasa/:username': {all: 'picasa.user'},
+  '/picasa/:username/:album': {all: 'picasa.album'},
+  '/picasa/:username/:album/*': {all: 'picasa.album'}
 }

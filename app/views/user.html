@@ -1,8 +1,8 @@
 <% extend 'default.html' %>
 
-<div class="user-top">
+<div class="user-top clearfix">
     <div class="user-name">
-        <h1><%- @author.name %></h1>
+        <h1><%- @author.fullName %></h1>
     </div>
 </div>
 
@@ -10,7 +10,7 @@
 
     <% for album in @albums : %>
     <div class="item">
-        <a href="#">
+        <a href="<%- album.url  %>">
             <div class="item-img">
                 <b class="b2"></b><b class="b1"></b><img src="<%- album.thumb %>" alt="<%- album.title %>"/>
             </div>
@@ -22,4 +22,3 @@
     <% end %>
 
 </div>
-&nbsp

@@ -1,16 +1,35 @@
 <% extend 'default.html' %>
 
-<div>
-    <%- @baseUrl %><br>
-    Author: <%- @author.name %><br>
-    Album title: <%- @album.title %><br>
-    <ul>
+<div class="single_album-top clearfix">
+    <div class="single_album-title">
+        <h1><%- @album.title %></h1>
+    </div>
+    <div class="single_album-author">
+        by <a href="<%- @author.url %>"><%- @author.fullName %></a>
+    </div>
+</div>
+
+<div class="single_album">
+    <div class="view">
+        <div class="view-inner">
+            <div class="preloader"></div>
+        </div>
+    </div>
+    <div class="thumbs">
+        <div class="thumbs-inner">
         <% for image in @images : %>
-        <li>
-            <%- image.filename %><br>
-            <img src="<%- image.thumb %>" alt=""/><br>
-            <img src="<%- image.url %>" alt=""/><br>
-        </li>
+            <a href="<%- image.url %>" class="item"><img src="<%- image.thumb %>" alt=""/></a>
         <% end %>
-    </ul>
+        </div>
+    </div>
+</div>
+<div class="control">
+    <div class="control-right">
+        <b class="btn btn_thumbs" title="Thumbnails"></b>
+    </div>
+    <div class="control-center">
+        <b class="btn btn_prev" title="Previous"></b>
+        <div class="control-pages">2/20</div>
+        <b class="btn btn_next" title="Next"></b>
+    </div>
 </div>
