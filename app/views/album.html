@@ -17,19 +17,24 @@
     </div>
     <div class="thumbs">
         <div class="thumbs-inner">
-        <% for image in @images : %>
-            <a href="<%- image.url %>" class="item"><img src="<%- image.thumb %>" alt=""/></a>
-        <% end %>
+            <div class="float">
+                <div class="thumbs-width">
+                <% for image in @images : %>
+                    <a href="<%- image.url %>" class="item"><img src="<%- image.thumb %>" alt=""/></a>
+                <% end %>
+                </div>
+            </div>
         </div>
     </div>
 </div>
+
 <div class="control">
     <div class="control-right">
         <b class="btn btn_thumbs" title="Thumbnails"></b>
     </div>
     <div class="control-center">
         <b class="btn btn_prev" title="Previous"></b>
-        <div class="control-pages">2/20</div>
+        <div class="control-pages">&nbsp;/&nbsp;</div>
         <b class="btn btn_next" title="Next"></b>
     </div>
 </div>
