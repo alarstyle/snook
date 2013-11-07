@@ -1,4 +1,12 @@
 /**
+ * NODETIME
+ */
+require('nodetime').profile({
+    accountKey: '1ea33d3ab93224453b480f77a6cf090fe44df843',
+    appName: 'PrettyAlbums openshift'
+});
+
+/**
  * Variables
  */
 var logger, errorLogger;
