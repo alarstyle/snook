@@ -112,6 +112,12 @@ button {width: auto; overflow: visible;}
 .clearfix:after { clear: both; }
 .clearfix { zoom: 1; }
 
+* {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
 /***** Basic Elements *****/
 html, body {
     height: 100%;
@@ -194,6 +200,18 @@ header {
     margin: 3px 0 0 10px;
 }
 
+.header-report {
+    float: right;
+    margin: 9px 11px 0 0;
+}
+.header-report-text {
+    color: #595959;
+    float: right;
+    font-size: 12px;
+    margin-right: 13px;
+    text-align: right;
+}
+
 
 /***** Content *****/
 .user-top {
@@ -215,9 +233,6 @@ header {
 .albums .item a {
     display: block;
     border-radius: 9px;
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
     width: 100%;
     height: 100%;
     min-height: 100%;
@@ -314,8 +329,9 @@ header {
     z-index: 100;
     overflow: hidden;
     -moz-transition: bottom .5s ease, display 1s ease;
-    -o-transition: bottom .5s ease, display 1s ease;
     -webkit-transition: bottom .5s ease, display 1s ease;
+    -o-transform: bottom .5s ease, display 1s ease;
+    transform: bottom .5s ease, display 1s ease;
 }
 .thumbs-inner {
     position: relative;
@@ -354,8 +370,8 @@ header {
     border: 1px solid #000;
     border: 1px solid rgba(255,255,255,0);
     -moz-transition: border-color .5s ease;
-    -o-transition: border-color .5s ease;
     -webkit-transition: border-color .5s ease;
+    -o-transition: border-color .5s ease;
     transition: border-color .5s ease;
 }
 .thumbs .item:first-child {
@@ -555,6 +571,89 @@ header {
 
 
 /***** Etc *****/
+.report {
+    position: absolute;
+    background: #fff;
+    border: 1px solid #000;
+    color: #000;
+    font: 14px Arial;
+    right: 10px;
+    top: 106px;
+    width: 256px;
+    padding: 10px;
+    -webkit-box-shadow: 3px 3px 0 rgba(0,0,0,.4);
+    -moz-box-shadow:    3px 3px 0 rgba(0,0,0,.4);
+    box-shadow:         3px 3px 0 rgba(0,0,0,.4);
+    z-index: 1000;
+}
+.report label {
+    display: inline-block;
+    margin: 0 0 3px 5px;
+}
+.report input,
+.report textarea {
+    background: #fff;
+    border: 1px solid #000;
+    color: #000;
+    font: 14px Arial;
+    width: 100%;
+    max-width: 100%;
+    resize: none;
+    margin-bottom: 8px;
+    height: 30px;
+    outline: none;
+    padding: 0 3px;
+}
+.report textarea {
+    height: 183px;
+    padding-top: 2px;
+    margin-bottom: 2px;
+}
+.report .simplebtn {
+    margin-bottom: 0;
+    margin-top: 2px;
+}
+
+.simplebtn {
+    color: #e6e6e6;
+    border: 1px solid #e6e6e6;
+    background: #000;
+    cursor: pointer;
+    font: 16px/29px Arial;
+    font-weight: bold;
+    text-align: center;
+    height: 30px;
+    min-width: 110px;
+    padding: 0 20px;
+    float: right;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    outline: none;
+}
+.simplebtn:hover {
+    color: #fff;
+    background: #222;
+    border-color: #fff;
+}
+.simplebtn:active {
+    color: #000;
+    background: #e6e6e6;
+}
+.simplebtn_white {
+    background: #fff;
+    color: #000;
+    border-color: #000;
+}
+.simplebtn_white:hover {}
+.simplebtn_white:active {
+    color: #fff;
+    background: #000;
+    border-color: #fff;
+}
+
 @media all and (min-width: 1241px) {
     .albums .item {
         width: 240px;

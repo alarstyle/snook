@@ -70,28 +70,28 @@ function matchDbWithModels(callback) {
 
     // main database sync(), will create new models
     function dbSync(callback) {
-        logger.info('Matching Databse: Start main database sync.');
+        logger.info('Matching Database: Start main database sync.');
         sequelize.sync({logging: false})
             .success(function() {
-                logger.info('Matching Databse: Success with main database sync.');
+                logger.info('Matching Database: Success with main database sync.');
                 callback(null);
             })
             .error(function(err) {
-                errorLogger.error('Matching Databse: Fail with main database sync. %s', err.stack);
+                errorLogger.error('Matching Database: Fail with main database sync. %s', err.stack);
                 callback(err);
             });
     }
 
     // forced database for match sync(), will delete old tables and create new
     function dbForMatchForcedSync(callback) {
-        logger.info('Matching Databse: Start database for match sync.');
+        logger.info('Matching Database: Start database for match sync.');
         sequelizeForMatch.sync({force: true, logging: false})
             .success(function() {
-                logger.info('Matching Databse: Success with database for match sync.');
+                logger.info('Matching Database: Success with database for match sync.');
                 callback(null);
             })
             .error(function(err) {
-                errorLogger.error('Matching Databse: Fail with database for match sync. %s', err.stack);
+                errorLogger.error('Matching Database: Fail with database for match sync. %s', err.stack);
                 callback(err);
             });
     }
@@ -220,7 +220,7 @@ function matchDbWithModels(callback) {
  * Loading routes and controllers
  */
 function loadFiles(callback) {
-    var ddd = {};
+
     load('app/routes.js')
         .then('app/controllers/picasa.js')
         .then('app/controllers/static.js')
@@ -333,28 +333,88 @@ function bindPathsToControllers(callback) {
     callback(null);
 }
 
+
 /**
- * Create HTTP/HTTPS server
+ *  Define the sample application.
  */
-function createServer(callback) {
-    http.createServer(app)
-        .listen(process.env.PORT || appConfig.port, function() {
-            console.log(appConfig.title + " on " + appConfig.port);
-            callback(null);
-        })
-        .on('error', function(err) {
-            switch (err.code) {
-                case 'EADDRINUSE':
-                    errorLogger.error('Port ' + appConfig.port + ' is in use.');
-                    break;
-                default:
-                    errorLogger.error('Fail to start the server. ' + err);
-            }
-            callback(err);
-        });
-    //https.createServer(options, app).listen(443);
+var MainApp = function() {
+
+    //  Scope.
+    var self = this;
+
+
+    /**
+     *  terminator === the termination handler
+     *  Terminate server on receipt of the specified signal.
+     *  @param {string} sig  Signal to terminate on.
+     */
+    self.terminator = function(sig){
+        if (typeof sig === "string") {
+            console.log('%s: Received %s - terminating sample app ...',Date(Date.now()), sig);
+            process.exit(1);
+        }
+        console.log('%s: Node server stopped.', Date(Date.now()) );
+    };
+
+
+    /**
+     *  Setup termination handlers (for exit and a list of signals).
+     */
+    self.setupTerminationHandlers = function(){
+        //  Process on exit and signals.
+        process.on('exit', function() { self.terminator(); });
+
+        // Removed 'SIGPIPE' from the list - bugz 852598.
+        ['SIGHUP', 'SIGINT', 'SIGQUIT', 'SIGILL', 'SIGTRAP', 'SIGABRT',
+            'SIGBUS', 'SIGFPE', 'SIGUSR1', 'SIGSEGV', 'SIGUSR2', 'SIGTERM'
+        ].forEach(function(element, index, array) {
+                process.on(element, function() { self.terminator(element); });
+            });
+    };
+
+
+    /**
+     *  Initialize the server (express) and create the routes and register
+     *  the handlers.
+     */
+    self.initializeServer = function(callback) {
+        self.setupTerminationHandlers();
+        callback(null);
+    };
+
+
+    /**
+     *  Start the server (starts up the sample application).
+     */
+    self.start = function(callback) {
+        //  Start the app on the specific interface (and port).
+        /*self.app.listen(self.port, self.ipaddress, function() {
+            console.log('%s: Node server started on %s:%d ...',
+                Date(Date.now() ), self.ipaddress, self.port);
+        });*/
+        http.createServer(app)
+            .listen(process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || appConfig.port, process.env.OPENSHIFT_NODEJS_IP, function() {
+                console.log(appConfig.title + " on " + appConfig.port);
+                callback(null);
+            })
+            .on('error', function(err) {
+                switch (err.code) {
+                    case 'EADDRINUSE':
+                        errorLogger.error('Port ' + appConfig.port + ' is in use.');
+                        break;
+                    default:
+                        errorLogger.error('Fail to start the server. ' + err);
+                }
+                callback(err);
+            });
+        //https.createServer(options, app).listen(443);
+    };
 
 }
+
+var mainApp = new MainApp();
+//app.init();
+//app.start();
 
 /**
  * Executing Series
@@ -366,7 +426,8 @@ async.series([
     loadFiles,
     configureApp,
     bindPathsToControllers,
-    createServer
+    mainApp.initializeServer,
+    mainApp.start
 ]);
 
 

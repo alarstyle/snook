@@ -185,6 +185,7 @@ catch (e) {}
         });
         viewScroll.on('zoomEnd', onZoomEnd)*/;
         var $thumbs_inner = $('.thumbs-inner')
+        if ($thumbs_inner.length === 0) return;
         thumbsScroll = new iScroll($thumbs_inner[0], {
             bounce: false,
             vScroll: false
@@ -198,10 +199,18 @@ catch (e) {}
         thumbsScroll.refresh();
     }
 
+    function initReport() {
+        $('#reportForm').submit(function(e) {
+            console.log("submit");
+            e.preventDefault();
+        });
+    }
+
 	$(document).ready(function() {
         checkModernizr();
         init();
         initScroll();
+        initReport();
     });
 
 	$(window).load(function(){
